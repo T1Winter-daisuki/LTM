@@ -10,7 +10,7 @@
 
 | STT | Họ và Tên | MSSV | Email | Đóng góp |
 |-----|-----------|------|-------|----------|
-| 1 | Nguyễn Văn A | 20IT001 | a@example.com | ... |
+| 1 | Nguyễn Hữu Hưng | 20IT001 | a@example.com | ... |
 | 2 | Trần Thị B | 20IT002 | b@example.com | ... |
 | 3 | Lê Văn C | 20IT003 | c@example.com | ... |
 
