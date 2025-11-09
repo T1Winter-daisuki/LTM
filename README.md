@@ -1,18 +1,18 @@
-# BÀI TẬP LỚN: LẬP TRÌNH MẠNG  
+# BÀI TẬP LỚN: LẬP TRÌNH MẠNG
 
 ## [Tên dự án của nhóm]
 
-> 📘 *Mẫu README này là khung hướng dẫn. Sinh viên chỉ cần điền thông tin của nhóm và nội dung dự án theo từng mục.*
+> 📘 _Mẫu README này là khung hướng dẫn. Sinh viên chỉ cần điền thông tin của nhóm và nội dung dự án theo từng mục._
 
 ---
 
 ## 🧑‍💻 THÔNG TIN NHÓM
 
-| STT | Họ và Tên | MSSV | Email | Đóng góp |
-|-----|-----------|------|-------|----------|
-| 1 | Nguyễn Văn A | 20IT001 | a@example.com | ... |
-| 2 | Trần Thị B | 20IT002 | b@example.com | ... |
-| 3 | Lê Văn C | 20IT003 | c@example.com | ... |
+| STT | Họ và Tên   | MSSV       | Email                    | Đóng góp |
+| --- | ----------- | ---------- | ------------------------ | -------- |
+| 1   | Lê Hải Đăng | B22DCCN207 | ledang18102004@gmail.com | ...      |
+| 2   | Trần Thị B  | 20IT002    | b@example.com            | ...      |
+| 3   | Lê Văn C    | 20IT003    | c@example.com            | ...      |
 
 **Tên nhóm:** Nhóm 01 – Lập trình mạng  
 **Chủ đề đã đăng ký:** (…)
@@ -24,11 +24,13 @@
 > Mô tả tổng quan hệ thống mà nhóm triển khai.
 
 Ví dụ:
+
 > Hệ thống bao gồm **server** xử lý yêu cầu và **client** gửi yêu cầu đến server qua giao thức HTTP.  
 > Server cung cấp API cho phép tính toán đơn giản hoặc truyền dữ liệu.  
 > Client có thể là chương trình CLI, web hoặc ứng dụng desktop.
 
 **Cấu trúc logic tổng quát:**
+
 ```
 client  <-->  server  <-->  (database / service nếu có)
 ```
@@ -43,36 +45,40 @@ client  <-->  server  <-->  (database / service nếu có)
 
 > Liệt kê công nghệ, framework, thư viện chính mà nhóm sử dụng.
 
-| Thành phần | Công nghệ | Ghi chú |
-|------------|-----------|---------|
-| Server | Python 3.11 + Flask | REST API |
-| Client | Node.js 20 + Axios | Giao tiếp HTTP |
-| Database | SQLite | Lưu trữ dữ liệu tạm thời |
-| Triển khai | Docker | (nếu có) |
+| Thành phần | Công nghệ           | Ghi chú                  |
+| ---------- | ------------------- | ------------------------ |
+| Server     | Python 3.11 + Flask | REST API                 |
+| Client     | Node.js 20 + Axios  | Giao tiếp HTTP           |
+| Database   | SQLite              | Lưu trữ dữ liệu tạm thời |
+| Triển khai | Docker              | (nếu có)                 |
 
 ---
 
 ## 🚀 HƯỚNG DẪN CHẠY DỰ ÁN
 
 ### 1. Clone repository
+
 ```bash
 git clone <repository-url>
 cd assignment-network-project
 ```
 
 ### 2. Chạy server
+
 ```bash
 cd source/server
 # Các lệnh để khởi động server
 ```
 
 ### 3. Chạy client
+
 ```bash
 cd source/client
 # Các lệnh để khởi động client
 ```
 
 ### 4. Kiểm thử nhanh
+
 ```bash
 # Các lệnh test
 ```
@@ -81,10 +87,10 @@ cd source/client
 
 ## 🔗 GIAO TIẾP (GIAO THỨC SỬ DỤNG)
 
-| Endpoint | Protocol | Method | Input | Output |
-|----------|----------|--------|-------|--------|
-| `/health` | HTTP/1.1 | GET | — | `{"status": "ok"}` |
-| `/compute` | HTTP/1.1 | POST | `{"task":"sum","payload":[1,2,3]}` | `{"result":6}` |
+| Endpoint   | Protocol | Method | Input                              | Output             |
+| ---------- | -------- | ------ | ---------------------------------- | ------------------ |
+| `/health`  | HTTP/1.1 | GET    | —                                  | `{"status": "ok"}` |
+| `/compute` | HTTP/1.1 | POST   | `{"task":"sum","payload":[1,2,3]}` | `{"result":6}`     |
 
 ---
 
@@ -97,6 +103,7 @@ cd source/client
 ---
 
 ## 🧩 CẤU TRÚC DỰ ÁN
+
 ```
 assignment-network-project/
 ├── README.md
