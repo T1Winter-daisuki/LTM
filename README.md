@@ -10,8 +10,8 @@
 
 | STT | Họ và Tên | MSSV | Email | Đóng góp |
 |-----|-----------|------|-------|----------|
-| 1 | Nguyễn Hữu Hưng | 20IT001 | a@example.com | ... |
-| 2 | Trần Thị B | 20IT002 | b@example.com | ... |
+| 1 | Nguyễn Hữu Hưng | B22DCCN412 | a@example.com | ... |
+| 2 | Lê Hải Đăng | 20IT002 | b@example.com | ... |
 | 3 | Lê Văn C | 20IT003 | c@example.com | ... |
 
 **Tên nhóm:** Nhóm 01 – Lập trình mạng  
