@@ -1,46 +1,110 @@
-# MODULE SERVER
 
-> 📘 *Sinh viên mô tả phần **server** tại đây. Điền đầy đủ theo framework và bài toán của nhóm.*
+# Bài tập lớn môn Lập trình mạng - Nhóm 02
 
----
+  
 
-## 🎯 MỤC TIÊU
+## Đề tài: Ứng dụng chat real-time
 
-Server chịu trách nhiệm:
-- Tiếp nhận yêu cầu từ client
-- Xử lý dữ liệu/tính toán
-- Trả kết quả cho client
+  
 
----
+**Danh sách thành viên:**
 
-## ⚙️ CÔNG NGHỆ SỬ DỤNG
+  
 
-| Thành phần | Công nghệ |
-|------------|-----------|
-| Ngôn ngữ | Python / Node.js / Java / ... |
-| Framework | Flask / Express / Spring Boot / ... |
-| Database | SQLite / MySQL / ... (nếu có) |
+1. Nguyễn Hữu Hưng - B22DCCN412.
+
+2. Lê Hải Đăng - B22DCCN207.
+
+3. Bùi Hoàng Sơn - B22DCCN412.
+
+  
 
 ---
 
-## 🚀 HƯỚNG DẪN CHẠY
+  
 
-### Cài đặt
-```bash
-# Ví dụ với Python
-pip install -r requirements.txt
+### I. Mô tả
 
-# Hoặc với Node.js
-npm install
-```
+#### 1. Giới thiệu
 
-### Khởi động server
-```bash
-# Ví dụ
-python app.py
-# hoặc
-node server.js
-```
+  
+
+Ứng dụng Chat Realtime là một ứng dụng cho phép người dùng trò chuyện với nhau trong thời gian thực. Ứng dụng này được phát triển để cung cấp trải nghiệm trò chuyện dễ dàng và nhanh chóng, cho phép người dùng gửi tin nhắn, hình ảnh và tệp đính kèm một cách nhanh chóng.
+
+  
+
+#### 2. Các tính năng chính
+
+  
+**Đăng nhập và đăng ký:** Ứng dụng cho phép người dùng đăng nhập bằng tên đăng nhập và mật khẩu hoặc đăng ký tài khoản mới.
+
+**Trò chuyện Real-time:** Người dùng có thể trò chuyện với nhau một cách trong thời gian thực, không cần phải làm mới trang hoặc tải lại. Khi không có kết nối internet, vẫn có thể gửi được tin nhắn, tin nhắn sẽ được đồng bộ khi online.
+ 
+
+**Gửi Tệp Đính Kèm** **:** Người dùng có thể gửi tệp đính kèm như tài liệu, hồ sơ và tệp âm thanh bất đồng bộ.
+
+
+  
+
+#### 3. Demo các tính năng
+
+
+### II. Các công nghệ sử dụng
+
+  
+
+**Back-end**
+
+  
+
+1. [FastAPI](https://fastapi.tiangolo.com/) - FastAPI framework, high performance, easy to learn, fast to code, ready for production
+
+  
+
+2. [MongoDB](https://www.mongodb.com/) - NoSQL Database
+
+  
+
+**Front-end**
+
+  
+
+1. [VueJs 3](https://vi.vuejs.org/) - A dynamic Javascript Framework
+
+  
+
+2. [Ant design Vue](https://www.antdv.com/) - Provides plenty of UI components to enrich your web applications, and we will improve components experience consistently
+
+  
+  
+
+### III. Hướng dẫn cài đặt
+
+  
+
+**Back-end**
+
+  
+
+- Cài đặt thư viện
+	```
+	pip install -r requirements.txt
+	```
+- Chạy chương trình
+	 ```
+	 uvicorn main:app --reload 
+	```
+**Front-end**
+- Cài đặt thư viện
+	```
+	npm install
+	```
+-  Chạy chương trình:
+	```
+	npm run dev
+	```
+	
+
 
 Server chạy tại: `http://localhost:8080`
 
