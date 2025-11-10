@@ -97,6 +97,8 @@
   border-top-left-radius: 18px;
   border-bottom-left-radius: 18px;
   border-bottom-right-radius: 18px;
+  text-align: right;
+  word-wrap: break-word;
 }
 
 .yourMessage .message {
@@ -105,6 +107,8 @@
   border-top-right-radius: 18px;
   border-bottom-left-radius: 18px;
   border-bottom-right-radius: 18px;
+  text-align: left;
+  word-wrap: break-word;
 }
 
 .usernameContainer {

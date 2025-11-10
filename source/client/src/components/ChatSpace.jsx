@@ -19,13 +19,11 @@ const ChatSpace = ({ user }) => {
   const fileSocketRef = useRef(null);
 
   const fakeUsers = [
-    { username: "Alice", status: "online" },
     { username: "Bob", status: "offline" },
     { username: "Charlie", status: "online" },
   ];
 
   const fakeMessages = [
-    { username: "Alice", type: "text", content: "Hi mọi người!" },
     { username: "Bob", type: "text", content: "Hello Alice!" },
     { username: "Charlie", type: "text", content: "Chào cả nhà" },
     { username: "Alice", type: "file", message: "document.pdf" },
@@ -34,71 +32,71 @@ const ChatSpace = ({ user }) => {
   useEffect(() => {
     if (!user) return <p>Loading...</p>;
 
-    // socketRef.current = new WebSocket(`ws://localhost:8000/ws/${user?.username}`);
-    // fileSocketRef.current = new WebSocket(`ws://localhost:8000/ws/file/${user?.username}`);
+    socketRef.current = new WebSocket(`ws://localhost:8000/ws/${user?.username}`);
+    fileSocketRef.current = new WebSocket(`ws://localhost:8000/ws/file/${user?.username}`);
 
-    // axios.get("http://localhost:8000/message/get_all").then((res) => {
-    //   setMessages(res.data.map((msg) => ({
-    //     username: msg.username,
-    //     message: msg.message,
-    //     type: msg.type
-    //   })));
-    // });
+    axios.get("http://localhost:8000/message/get_all").then((res) => {
+      setMessages(res.data.map((msg) => ({
+        username: msg.username,
+        message: msg.message,
+        type: msg.type
+      })));
+    });
 
-    // socketRef.current.onmessage = (e) => {
-    //   const data = JSON.parse(e.data);
-    //   setMessages((prev) => [...prev, { username: data.username, message: data.message, type: data.type }]);
-    // };
-    // fileSocketRef.current.onmessage = (e) => {
-    //   const data = JSON.parse(e.data);
-    //   setMessages((prev) => [...prev, { username: data.username, message: data.message, type: data.type }]);
-    // };
+    socketRef.current.onmessage = (e) => {
+      const data = JSON.parse(e.data);
+      setMessages((prev) => [...prev, { username: data.username, message: data.message, type: data.type }]);
+    };
+    fileSocketRef.current.onmessage = (e) => {
+      const data = JSON.parse(e.data);
+      setMessages((prev) => [...prev, { username: data.username, message: data.message, type: data.type }]);
+    };
 
-    // const fetchUsers = () => {
-    //   axios.get("http://127.0.0.1:8000/api/user/get_all").then((res) => setListUsers(res.data));
-    // };
-    // fetchUsers();
-    // const interval = setInterval(fetchUsers, 2000);
+    const fetchUsers = () => {
+      axios.get("http://127.0.0.1:8000/api/user/get_all").then((res) => setListUsers(res.data));
+    };
+    fetchUsers();
+    const interval = setInterval(fetchUsers, 2000);
 
-    // const handleOnline = () => {
-    //   setIsOnline(true);
-    //   syncMessages();
-    // };
-    // const handleOffline = () => setIsOnline(false);
+    const handleOnline = () => {
+      setIsOnline(true);
+      syncMessages();
+    };
+    const handleOffline = () => setIsOnline(false);
 
-    // window.addEventListener("online", handleOnline);
-    // window.addEventListener("offline", handleOffline);
+    window.addEventListener("online", handleOnline);
+    window.addEventListener("offline", handleOffline);
 
-    // return () => {
-    //   clearInterval(interval);
-    //   window.removeEventListener("online", handleOnline);
-    //   window.removeEventListener("offline", handleOffline);
-    //   socketRef.current?.close();
-    //   fileSocketRef.current?.close();
-    // };
-    // === Dùng fake data ===
-    setListUsers(fakeUsers);
-    setMessages(fakeMessages);
+    return () => {
+      clearInterval(interval);
+      window.removeEventListener("online", handleOnline);
+      window.removeEventListener("offline", handleOffline);
+      socketRef.current?.close();
+      fileSocketRef.current?.close();
+    };
+    // // === Dùng fake data ===
+    // setListUsers(fakeUsers);
+    // setMessages(fakeMessages);
   }, [user?.username]);
 
   const sendMessage = () => {
-    // if (!currentMessage.trim()) return;
-
-    // const messageData = { type: "text", content: currentMessage };
-    // setCurrentMessage("");
-
-    // if (!isOnline) {
-    //   setMessagesOffline((prev) => [...prev, messageData]);
-    //   return;
-    // }
-
-    // socketRef.current?.send(JSON.stringify(messageData));
     if (!currentMessage.trim()) return;
-    setMessages((prev) => [
-      ...prev,
-      { username: user.username, type: "text", content: currentMessage }
-    ]);
+
+    const messageData = { type: "text", content: currentMessage };
     setCurrentMessage("");
+
+    if (!isOnline) {
+      setMessagesOffline((prev) => [...prev, messageData]);
+      return;
+    }
+
+    socketRef.current?.send(JSON.stringify(messageData));
+    // if (!currentMessage.trim()) return;
+    // setMessages((prev) => [
+    //   ...prev,
+    //   { username: user.username, type: "text", content: currentMessage }
+    // ]);
+    // setCurrentMessage("");
   };
 
   const syncMessages = () => {
@@ -231,8 +229,8 @@ const ChatSpace = ({ user }) => {
               <input type="file" onChange={handleFileChange} />
             </Modal>
 
-            <Input placeholder="Nhập tin nhắn" value={currentMessage} onChange={(e) => setCurrentMessage(e.target.value)} className={styles.chatInput} />
-            <Button type="primary" icon={<SendOutlined />} onClick={sendMessage} style={{ marginLeft: 5, borderRadius: 30 }} />
+            <Input.TextArea placeholder="Nhập tin nhắn" value={currentMessage} onChange={(e) => setCurrentMessage(e.target.value)} className={styles.chatInput} autoSize={{ minRows: 1, maxRows: 4 }}/>
+            <Button icon={<SendOutlined />} onClick={sendMessage} style={{ marginLeft: 5, borderRadius: 30 }} />
           </div>
         </Card>
       </div>
