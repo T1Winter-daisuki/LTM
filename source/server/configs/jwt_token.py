@@ -5,7 +5,7 @@ from typing import Union
 from jose import JWTError, jwt
 from schemas.token_data_schema import TokenData
 
-SECRET_KEY = "NguyenManhQuanD20"
+SECRET_KEY = "lehaidang"
 ALGORITHM = "HS256"
 ACCESS_TOKEN_EXPIRE_MINUTES = 60
 
