@@ -165,7 +165,9 @@ const ChatSpace = ({ user }) => {
     <div className={styles.superContainer}>
       {/* User Status */}
       <div className={styles.userStatusBar}>
-        {listUsers.map((u) => (
+        {listUsers
+          .filter(u => u.username !== user.username)
+          .map(u => (
           <div key={u.username} className={styles.userList} onClick={() => setActiveChatUser(u)}>
             <div className={styles.user}>
               <div className={styles.infor}>
@@ -179,9 +181,12 @@ const ChatSpace = ({ user }) => {
 
       {/* Chat Space */}
       <div className={styles.chatSpaceContainer}>
+      {activeChatUser ? (
         <div style={{ paddingBottom: 100, overflowY: "auto", flex: 1 }}>
           {messages
-            .filter(msg => msg.username === user.username || msg.username === activeChatUser?.username)
+            .filter(msg =>
+              msg.username === activeChatUser.username || msg.username === user.username
+            )
             .map((msg, idx) => (
               <div
                 key={idx}
@@ -205,10 +210,8 @@ const ChatSpace = ({ user }) => {
                   </p>
                 )}
               </div>
-          ))}
-
-
-          {messagesOffline.filter((item) => item.type !== "file").map((msg, idx) => (
+            ))}
+          {messagesOffline.filter(item => item.type !== "file").map((msg, idx) => (
             <div key={idx} className={`${styles.messageContainer} ${styles.myMessage}`}>
               <p className={styles.message}>{msg.content}</p>
               <p className={styles.sendingLabel}>Đang gửi</p>
@@ -216,6 +219,11 @@ const ChatSpace = ({ user }) => {
           ))}
           <div ref={messagesEndRef} />
         </div>
+        ) : (
+          <div style={{ flex: 1, display: "flex", justifyContent: "center", alignItems: "center", color: "#888" }}>
+            Trò chuyện với người ở danh sách bên.
+          </div>
+        )}
 
         <Card className={styles.chatCard}>
           <div style={{ display: "flex", alignItems: "center", gap: "10px" }}>
@@ -229,11 +237,24 @@ const ChatSpace = ({ user }) => {
               <input type="file" onChange={handleFileChange} />
             </Modal>
 
-            <Input.TextArea placeholder="Nhập tin nhắn" value={currentMessage} onChange={(e) => setCurrentMessage(e.target.value)} className={styles.chatInput} autoSize={{ minRows: 1, maxRows: 4 }}/>
+            <Input.TextArea
+              placeholder="Nhập tin nhắn"
+              value={currentMessage}
+              onChange={(e) => setCurrentMessage(e.target.value)}
+              className={styles.chatInput}
+              autoSize={{ minRows: 1, maxRows: 4 }}
+              onKeyDown={(e) => {
+                if (e.key === "Enter" && !e.shiftKey && !e.ctrlKey) {
+                  e.preventDefault();
+                  sendMessage();
+                }
+              }}
+            />
             <Button icon={<SendOutlined />} onClick={sendMessage} style={{ marginLeft: 5, borderRadius: 30 }} />
           </div>
         </Card>
       </div>
+
     </div>
   );
 };
