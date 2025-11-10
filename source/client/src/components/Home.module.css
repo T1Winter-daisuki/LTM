@@ -1,0 +1,116 @@
+.starSky {
+  position: fixed;
+  width: 100%;
+  height: 100vh;
+  background: radial-gradient(ellipse at bottom, #261B37 0%, #2F1C36 50%, #5E2A4B 100%);
+  overflow: hidden;
+  z-index: -1;
+}
+
+.stars, .stars2, .stars3 {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  background: white;
+}
+
+/* Layer 1 */
+.stars {
+  box-shadow:
+    10px 50px, 60px 120px, 120px 300px, 200px 150px, 250px 400px,
+    400px 100px, 500px 250px, 600px 350px, 700px 80px, 800px 200px,
+    900px 500px, 1000px 300px, 1100px 450px, 1200px 100px, 1300px 350px,
+    1400px 200px, 1500px 400px, 1600px 150px, 1700px 300px, 1800px 250px,
+    1900px 100px, 50px 600px, 150px 700px, 250px 650px, 350px 750px,
+    450px 500px, 550px 550px, 650px 600px, 750px 700px, 850px 650px,
+    950px 750px, 1050px 500px, 1150px 550px, 1250px 600px, 1350px 700px,
+    1450px 650px, 1550px 750px, 1650px 500px, 1750px 550px, 1850px 600px,
+    1950px 700px, 250px 800px, 450px 850px, 650px 900px, 850px 950px,
+    1050px 1000px, 1250px 1050px, 1450px 1100px, 1650px 1150px, 1850px 1200px;
+  animation: fallStars1 100s linear infinite;
+}
+
+/* Layer 2 */
+.stars2 {
+  box-shadow:
+    30px 70px, 90px 200px, 150px 400px, 250px 180px, 300px 450px,
+    450px 120px, 550px 300px, 650px 400px, 750px 150px, 850px 300px,
+    950px 500px, 1050px 350px, 1150px 450px, 1250px 400px, 1350px 550px,
+    1450px 500px, 1550px 600px, 1650px 550px, 1750px 650px, 1850px 700px,
+    1950px 600px;
+  animation: fallStars2 150s linear infinite;
+}
+
+/* Layer 3 */
+.stars3 {
+  box-shadow:
+    50px 100px, 120px 250px, 200px 500px, 300px 350px, 400px 450px,
+    500px 200px, 600px 400px, 700px 300px, 800px 500px, 900px 600px,
+    1000px 550px, 1100px 650px, 1200px 700px, 1300px 600px, 1400px 750px,
+    1500px 650px, 1600px 800px, 1700px 700px, 1800px 850px, 1900px 900px;
+  animation: fallStars3 200s linear infinite;
+}
+
+@keyframes fallStars1 { 0% { transform: translateY(0); } 100% { transform: translateY(-1200px); } }
+@keyframes fallStars2 { 0% { transform: translateY(0); } 100% { transform: translateY(-1500px); } }
+@keyframes fallStars3 { 0% { transform: translateY(0); } 100% { transform: translateY(-1800px); } }
+
+/* Spinner */
+.spinner {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  z-index: 50;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+/* Responsive: spinner nhỏ trên màn hình nhỏ */
+@media (max-width: 768px) {
+  .spinner {
+    transform: translate(-50%, -50%) scale(0.8);
+  }
+}
+
+/* Header */
+header {
+  position: fixed;
+  width: 100%;
+  top: 0;
+  right: 0;
+  z-index: 10;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 22px 15%;
+  transition: all 0.3s ease;
+  background: #4B2847;
+  border-bottom: 1px solid rgb(24, 24, 24);
+}
+
+.logo {
+  color: #C64234;
+  font-size: 35px;
+  font-weight: bold;
+  letter-spacing: 1px;
+}
+.logo span { color: #FDF996; }
+
+
+#menu-icon {
+  font-size: 30px;
+  z-index: 11;
+  cursor: pointer;
+  margin-left: 25px;
+  display: none;
+}
+
+.content {
+  position: relative;
+  z-index: 1;
+  text-align: center;
+  padding-top: 120px;
+  color: #FDF996;
+}

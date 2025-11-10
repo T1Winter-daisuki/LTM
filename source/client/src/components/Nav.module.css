@@ -1,0 +1,84 @@
+.nav-container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+  padding: 18px 10%;
+  background-color: #4B2847;
+  border-bottom: 1px solid #181818;
+  position: fixed;
+  top: 0;
+  right: 0;
+  z-index: 100;
+  transition: all 0.3s ease;
+}
+
+/* Logo */
+.left-content a {
+  font-size: 30px;
+  font-weight: bold;
+  color: #C64234;
+  text-decoration: none;
+  letter-spacing: 1px;
+  transition: all 0.3s ease;
+}
+
+.left-content a span {
+  color: #FDF996;
+}
+
+.left-content a:hover {
+  color: #FDF996;
+}
+
+.right-content {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+}
+
+.menu-buttons {
+  display: flex;
+  gap: 12px;
+}
+
+.right-content .ant-btn {
+  background-color: #88332E;
+  color: #E1DDA2;
+  border-radius: 6px;
+  padding: 10px 22px;
+  font-weight: bold;
+  transition: all 0.3s ease;
+}
+
+.right-content .ant-btn:hover {
+  background-color: #C62434;
+  color: #FDF996;
+  transform: translateY(-3px);
+  box-shadow: 0 6px 15px rgba(198, 36, 52, 0.4);
+}
+
+/* Mobile dropdown */
+.ant-dropdown-menu {
+  background-color: #261B37;
+  border-radius: 8px;
+  padding: 12px 0;
+}
+
+.ant-dropdown-menu-item {
+  color: #E1DDA2 !important;
+  padding: 10px 24px;
+  transition: all 0.3s ease;
+}
+
+.ant-dropdown-menu-item:hover {
+  background-color: #88332E;
+  color: #FDF996 !important;
+}
+
+/* Responsive */
+@media (max-width: 700px) {
+  .menu-buttons {
+    display: none;
+  }
+}
