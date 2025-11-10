@@ -18,16 +18,16 @@ const ChatSpace = ({ user }) => {
   const socketRef = useRef(null);
   const fileSocketRef = useRef(null);
 
-  const fakeUsers = [
-    { username: "Bob", status: "offline" },
-    { username: "Charlie", status: "online" },
-  ];
+  // const fakeUsers = [
+  //   { username: "Bob", status: "offline" },
+  //   { username: "Charlie", status: "online" },
+  // ];
 
-  const fakeMessages = [
-    { username: "Bob", type: "text", content: "Hello Alice!" },
-    { username: "Charlie", type: "text", content: "Chào cả nhà" },
-    { username: "Alice", type: "file", message: "document.pdf" },
-  ];
+  // const fakeMessages = [
+  //   { username: "Bob", type: "text", content: "Hello Alice!" },
+  //   { username: "Charlie", type: "text", content: "Chào cả nhà" },
+  //   { username: "Alice", type: "file", message: "document.pdf" },
+  // ];
 
   useEffect(() => {
     if (!user) return <p>Loading...</p>;
@@ -108,44 +108,65 @@ const ChatSpace = ({ user }) => {
   };
 
   const sendFile = (file) => {
-    const chunkSize = 1024 * 1024;
-    let offset = 0;
+    if (!file) return;
 
-    if (!isOnline) {
-      setMessagesOffline((prev) => [...prev, { type: "file_progress", content: file.name }]);
+    if (!fileSocketRef.current || fileSocketRef.current.readyState !== 1) {
+      antMessage.error("WebSocket chưa kết nối");
       return;
     }
 
-    antMessage.loading({ content: "Đang tải lên", duration: 2.5 }).then(() => {
-      const hide = antMessage.loading({ content: "Đang gửi", duration: 0 });
-      const sendChunk = () => {
-        if (offset >= file.size) {
-          hide();
-          antMessage.success("Gửi file thành công", 2.5);
-          return;
-        }
+    let offset = 0;
+    const chunkSize = 1024 * 1024;
 
-        const end = Math.min(offset + chunkSize, file.size);
-        const chunk = file.slice(offset, end);
-        const reader = new FileReader();
+    // Hiển thị file đang gửi
+    setMessages(prev => [...prev, { username: user.username, message: file.name, type: "file_progress" }]);
+    const hide = antMessage.loading({ content: `Đang gửi ${file.name}`, duration: 0 });
 
-        reader.onload = () => {
-          const fileData = {
+    const sendChunk = () => {
+      if (offset >= file.size) {
+        hide();
+        antMessage.success(`Gửi ${file.name} xong`, 2.5);
+        return;
+      }
+
+      const end = Math.min(offset + chunkSize, file.size);
+      const reader = new FileReader();
+
+      reader.onload = () => {
+        try {
+          fileSocketRef.current.send(JSON.stringify({
             type: "file",
             name: file.name,
-            offset: offset,
+            offset,
             content: reader.result,
-            totalSize: file.size,
-          };
-          fileSocketRef.current?.send(JSON.stringify(fileData));
+            totalSize: file.size
+          }));
           offset += chunkSize;
-          setTimeout(sendChunk, 500);
-        };
-        reader.readAsDataURL(chunk);
+          sendChunk();
+        } catch (err) {
+          hide();
+          antMessage.error("Gửi file lỗi");
+        }
       };
-      sendChunk();
-    });
+
+      reader.onerror = () => {
+        hide();
+        antMessage.error("Gửi file lỗi");
+      };
+
+      reader.readAsDataURL(file.slice(offset, end));
+    };
+
+    sendChunk();
   };
+
+  const handleFileInput = () => {
+    if (!fileInput) return;
+    sendFile(fileInput);
+    setFileModalOpen(false);
+    setFileInput(null);
+  };
+
 
   const messagesEndRef = useRef(null);
   useEffect(() => {
@@ -155,11 +176,6 @@ const ChatSpace = ({ user }) => {
   const [activeChatUser, setActiveChatUser] = useState(null);
 
   const handleFileChange = (e) => setFileInput(e.target.files[0]);
-  const handleFileInput = () => {
-    if (fileInput) sendFile(fileInput);
-    setFileModalOpen(false);
-    setFileInput(null);
-  };
 
   return (
     <div className={styles.superContainer}>
