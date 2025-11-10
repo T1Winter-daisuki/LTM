@@ -90,11 +90,21 @@ export const useUserStore = defineStore('users', () =>
                     password: password
                 });
 
-            user.value =
-            {
-                data: response.data,
+            // Log in automatically after successful registration
+            const formData = new FormData();
+            formData.append('username', username);
+            formData.append('password', password);
+
+            const loginResponse = await axios.post('http://localhost:8000/auth/login', formData);
+            localStorage.setItem('token', loginResponse.data.access_token);
+            token.value = loginResponse.data.access_token;
+            axios.defaults.headers.common['Authorization'] = 'Bearer ' + token.value;
+
+            const userInfo = await axios.get('http://localhost:8000/auth/get_current_user');
+            user.value = {
+                username: userInfo.data.username,
                 status: 'Đăng ký'
-            }
+            };
 
             loading.value = false;
         }

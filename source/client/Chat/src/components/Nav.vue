@@ -48,8 +48,13 @@ const logout = async () =>
     <div>
         <a-layout-header style="width: 100%;">
             <div class="nav-container">
-                <div class="left-content">
+                <!-- <div class="left-content">
                     <RouterLink to="/" style="font-size: 25px;">ChatApp</RouterLink>
+                </div> -->
+                <div class="left-content">
+                    <RouterLink to="/">
+                        <img src="/bg.png" alt="ChatApp Home" class="navbar-logo">
+                    </RouterLink>
                 </div>
 
                 <div class="right-content">
@@ -130,5 +135,17 @@ const logout = async () =>
 {
     display: flex;
     align-items: center;
+}
+
+/* In your <style scoped> section of Nav.vue */
+.navbar-logo {
+  /* Set a height for your logo */
+  height: 50px; 
+  
+  /* This keeps the image's proportions correct */
+  width: auto;  
+  
+  /* This often helps align the image with other text/icons in your nav */
+  vertical-align: middle;
 }
 </style>
