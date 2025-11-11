@@ -25,35 +25,61 @@ Server chạy tại: `http://localhost:8080`
 
 ---
 
-## 📦 CẤU TRÚC DỰ ÁN
-server/ ├── README.md ├── main.py # File khởi động chính (FastAPI App và WebSockets) ├── requirements.txt # Danh sách thư viện Python ├── configs/ │ ├── database.py # Cấu hình MongoDB │ ├── hashing.py # Xử lý băm mật khẩu │ ├── jwt_token.py # Tạo và xác thực JWT │ └── websocket_manager.py # Quản lý kết nối WebSocket ├── models/ │ └── user_model.py # Pydantic Model cho User ├── routers/ │ ├── authentication.py # Route: Đăng ký, Đăng nhập, Xác thực │ ├── message_router.py # Route: Lấy tin nhắn, Tải file │ └── user_router.py # Route: Lấy danh sách người dùng ├── schemas/ │ └── token_data_schema.py # Schema cho dữ liệu JWT └── serializers/ ├── message_serializer.py # Chuyển đổi dữ liệu Message └── user_serializer.py # Chuyển đổi dữ liệu User
 
-> **Lưu ý:** Bổ sung các endpoint của nhóm vào bảng trên.
-
----
 
 ## 📦 CẤU TRÚC
 ```
-server/
-├── README.md
-├── app.py (hoặc server.js)
-├── requirements.txt (hoặc package.json)
-├── routes/
-│   └── ...
-└── utils/
-    └── ...
-```
+server/ 
+├── README.md 
+├── main.py (hoặc app.py) 
+├── requirements.txt (hoặc package.json) 
+├── routes/ 
+│   ├── authentication.py 
+│   ├── message_router.py 
+│   └── user_router.py 
+└── utils/    
+├── configs/     
+│ ├── database.py     
+│ ├── hashing.py     
+│ ├── jwt_token.py     
+│ └── websocket_manager.py     
+├── models/     
+│ └── user_model.py     
+├── schemas/     
+│ └── token_data_schema.py     
+└── serializers/         ├── message_serializer.py         
+                         └── user_serializer.py
 
 ---
 
 ## 🧪 TEST
+
+Sử dụng lệnh `curl` trong terminal để kiểm tra nhanh các API HTTP:
+
 ```bash
-# Test API bằng curl
+# 1. Test trạng thái hoạt động của Server (Health Check)
 curl http://localhost:8080/health
-```
 
----
+# 2. Test Đăng ký người dùng (Register)
+# Thay thế 'username', 'password', 'full_name' bằng dữ liệu thực
+curl -X POST http://localhost:8080/auth/register \
+-H "Content-Type: application/json" \
+-d '{
+    "username": "testuser",
+    "password": "securepassword",
+    "full_name": "Test User"
+}'
 
+# 3. Test Đăng nhập (Login) và lấy Token
+# Lưu ý: API này dùng Form Data, không dùng JSON
+curl -X POST http://localhost:8080/auth/login \
+-H "Content-Type: application/x-www-form-urlencoded" \
+-d "username=testuser&password=securepassword"
+
+# 4. Test API yêu cầu xác thực (Lấy danh sách tin nhắn)
+# THAY THẾ <YOUR_ACCESS_TOKEN> bằng token nhận được từ bước 3
+# curl http://localhost:8080/message/get_all \
+# -H "Authorization: Bearer <YOUR_ACCESS_TOKEN>"
 ## 📝 GHI CHÚ
 
 - Port mặc định: **8080**
