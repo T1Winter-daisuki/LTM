@@ -105,3 +105,8 @@ app.add_middleware(
     allow_methods=["*"],
     allow_headers=["*"],
 )
+
+from fastapi.staticfiles import StaticFiles
+
+# Mount folder 'files' để có thể truy cập file qua URL
+app.mount("/message/file", StaticFiles(directory="files"), name="files")
