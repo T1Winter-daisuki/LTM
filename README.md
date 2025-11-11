@@ -76,6 +76,7 @@ cd source/client/Chat
   npm run dev
   ```
 
+```
 ## 🔗 GIAO TIẾP (GIAO THỨC SỬ DỤNG)
 
 | Endpoint                    | Protocol      | Method      | Input (Request Body/Params)                                                             | Output (Response Body)                                                                | Mô tả                                                                                    |
