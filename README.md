@@ -57,11 +57,11 @@ client  <-->  server  <-->  (database / service nếu có)
 Bảng này liệt kê các công nghệ và thư viện chính được sử dụng trong dự án.
 
 | Thành phần | Công nghệ | Ghi chú |
-|:------------|:-----------|:---------|
+|:---:|:---:|:---|
 | **Back-end Framework** | **FastAPI** | REST API, hiệu năng cao, dễ học, sẵn sàng cho production. |
 | **Database** | **MongoDB** | NoSQL Database để lưu trữ dữ liệu. |
-| **Front-end Framework** | **VueJs 3** | Dynamic Javascript Framework cho giao diện người dùng. |
-| **UI Components** | **Ant Design Vue** | Thư viện cung cấp các thành phần UI phong phú. |
+| **Front-end Framework** | **ReactJS** | Thư viện JavaScript hàng đầu để xây dựng giao diện người dùng động. |
+| **UI Components** | **Ant Design** | Thư viện cung cấp các thành phần UI phong phú (Cần điều chỉnh nếu sử dụng React thay vì Vue). |
 
 ---
 
@@ -140,7 +140,26 @@ assignment-network-project/
     ├── .gitignore
     ├── client/
     │   ├── README.md
-    │   └── (client source files...)
+        └── src/
+           │       ├── assets/             # Tài nguyên tĩnh
+           │       │   └── main.css
+           │       ├── components/         # Các thành phần tái sử dụng
+           │       │   ├── icons/          # Các icon
+           │       │   ├── stores/         # Quản lý trạng thái (ví dụ: Redux/Zustand stores)
+           │       │   ├── AuthModal.jsx
+           │       │   ├── AuthModal.module.css
+           │       │   ├── ChatSpace.jsx
+           │       │   ├── ChatSpace.module.css
+           │       │   ├── Home.jsx
+           │       │   ├── Home.module.css
+           │       │   ├── Nav.jsx
+           │       │   └── Nav.module.css
+           │        ── views/              # Các trang/khung nhìn chính
+           │        │   └── HomeView.jsx
+           │        ├── App.css
+           │        ├── App.jsx           # Component gốc của ứng dụng
+           │        ├── index.css
+           │        └── main.jsx          # Điểm khởi đầu của Client
     ├── server/
     │   ├── README.md
     │   └── .
