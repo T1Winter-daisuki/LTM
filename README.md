@@ -1,8 +1,7 @@
 # BÀI TẬP LỚN: LẬP TRÌNH MẠNG  
 
-## [Tên dự án của nhóm]
+## ChatApp
 
-> 📘 *Mẫu README này là khung hướng dẫn. Sinh viên chỉ cần điền thông tin của nhóm và nội dung dự án theo từng mục.*
 
 ---
 
@@ -109,11 +108,16 @@ cd source/client/Chat
 
 ## 🔗 GIAO TIẾP (GIAO THỨC SỬ DỤNG)
 
-| Endpoint | Protocol | Method | Input | Output |
-|----------|----------|--------|-------|--------|
-| `/health` | HTTP/1.1 | GET | — | `{"status": "ok"}` |
-| `/compute` | HTTP/1.1 | POST | `{"task":"sum","payload":[1,2,3]}` | `{"result":6}` |
-
+| Endpoint | Protocol | Method | Input (Request Body/Params) | Output (Response Body) | Mô tả |
+|:---|:---|:---|:---|:---|:---|
+| `/auth/register` | **HTTP/1.1** | **POST** | **JSON** (User Model): `{"username": "...", "password": "...", "full_name": "..."}` | **JSON:** `{"status": 200, "data": {...}}` hoặc Lỗi **203** | Đăng ký người dùng mới. Lưu mật khẩu đã hash vào MongoDB. |
+| `/auth/login` | **HTTP/1.1** | **POST** | **Form Data** (OAuth2RequestForm): `username`, `password` | **JSON:** `{"access_token": "...", "token_type": "bearer"}` hoặc Lỗi **401** | Đăng nhập và trả về **JWT Access Token**. |
+| `/auth/get_current_user` | **HTTP/1.1** | **GET** | **Header**: `Authorization: Bearer <token>` | **JSON** (TokenData Schema): `{"username": "..."}` hoặc Lỗi **401** | Xác thực token và lấy thông tin người dùng. |
+| `/api/user/get_all` | **HTTP/1.1** | **GET** | — | **JSON Array:** `[{... user data ...}, ...]` | Lấy danh sách người dùng và cập nhật trạng thái (`afk` nếu không hoạt động 5 phút). |
+| `/message/get_all` | **HTTP/1.1** | **GET** | **Header**: `Authorization: Bearer <token>` | **JSON Array:** `[{... message data ...}, ...]` | Lấy tất cả tin nhắn đã lưu trong MongoDB (cần xác thực). |
+| `/message/file/{file_name}` | **HTTP/1.1** | **GET** | **Path Param**: `file_name` | **File** (Binary data) | Tải xuống file theo tên từ thư mục `files/`. |
+| `/ws/{username}` | **WebSocket** | **Connect** | **JSON** (Text Message): `{"content": "...", "type": "text"}` | **JSON** (Broadcast): `{"username": "...", "message": "...", "type": "text"}` | Kết nối/Ngắt kết nối, gửi/nhận **tin nhắn văn bản** thời gian thực, cập nhật trạng thái. |
+| `/ws/file/{username}` | **WebSocket** | **Connect** | **JSON** (File Chunk): `{"name": "...", "content": "...", "offset": 0, "totalSize": 0}` | **JSON** (Broadcast): `{"username": "...", "message": "<file_name>", "type": "file"}` | Kết nối và xử lý **tải lên file** theo từng đoạn. Broadcast khi hoàn tất. |
 ---
 
 ## 📊 KẾT QUẢ THỰC NGHIỆM
@@ -139,8 +143,24 @@ assignment-network-project/
     │   └── (client source files...)
     ├── server/
     │   ├── README.md
-    │   └── (server source files...)
-    └── (các module khác nếu có)
+    │   └── .
+        ├── configs/
+        │   ├── database.py       # Cấu hình kết nối MongoDB
+        │   ├── hashing.py        # Xử lý băm (hash) mật khẩu (chưa thấy code)
+        │   ├── jwt_token.py      # Tạo và xác thực JWT
+        │   └── websocket_manager.py # Quản lý kết nối WebSocket
+        ├── models/
+        │   └── user_model.py     # Định nghĩa cấu trúc User (Pydantic Model)
+        ├── routers/
+        │   ├── authentication.py # API đăng ký, đăng nhập, xác thực
+        │   ├── message_router.py # API tin nhắn và tải file
+        │   └── user_router.py    # API người dùng
+        ├── schemas/
+        │   └── token_data_schema.py # Định nghĩa cấu trúc dữ liệu Token
+        ├── serializers/
+        │   ├── message_serializer.py # Chuyển đổi dữ liệu Message từ MongoDB
+        │   └── user_serializer.py    # Chuyển đổi dữ liệu User từ MongoDB
+        └── main.py                 # Hàm main và các điểm cuối WebSocket chính
 ```
 
 ---
@@ -149,11 +169,29 @@ assignment-network-project/
 
 > Nêu ý tưởng mở rộng hoặc cải tiến hệ thống.
 
-- [ ] Cải thiện giao diện người dùng
-- [ ] Thêm tính năng xác thực và phân quyền
-- [ ] Tối ưu hóa hiệu suất
-- [ ] Triển khai trên cloud
+[ ] Cải thiện giao diện người dùng
 
+Phát triển giao diện người dùng (Client-side) thân thiện, hiện đại (ví dụ: dùng React/Vue/Flutter), hỗ trợ hiển thị tin nhắn, file, và trạng thái người dùng một cách trực quan.
+
+[x] Thêm tính năng xác thực và phân quyền
+
+Yêu cầu JWT Authentication cho kết nối WebSocket (/ws/{username} và /ws/file/{username}) bằng cách gửi token qua tham số truy vấn.
+
+[x] Tối ưu hóa hiệu suất
+
+Triển khai Redis Pub/Sub để quản lý các kết nối WebSocket, cho phép hệ thống mở rộng sang kiến trúc đa máy chủ (clustering). Điều này đảm bảo tin nhắn 1-1 và broadcast hoạt động chính xác ngay cả khi có nhiều server FastAPI.
+
+[x] Triển khai trên cloud
+
+Chuyển đổi chuỗi kết nối MongoDB sang MongoDB Atlas hoặc dịch vụ DB cloud khác, và triển khai ứng dụng FastAPI trên các nền tảng đám mây (ví dụ: AWS ECS/EC2, Google Cloud Run) để đảm bảo khả năng mở rộng và tính sẵn sàng cao.
+
+[ ] Phát triển Chat 1-1 và Nhóm
+
+Lập trình lại logic gửi tin nhắn để sử dụng các collections Dialogs và Call đã định nghĩa, thay vì chỉ broadcast. Điều chỉnh WebSocket để gửi tin nhắn chính xác tới người nhận hoặc các thành viên trong nhóm.
+
+[ ] Hỗ trợ Tải File Lớn
+
+Thay vì truyền toàn bộ file qua WebSocket, tích hợp với dịch vụ lưu trữ đối tượng (Amazon S3 hoặc Google Cloud Storage) và sử dụng URL tải lên đã ký (signed URL) để client tải file trực tiếp lên cloud, giải phóng tài nguyên server.
 ---
 
 ## 📝 GHI CHÚ
