@@ -125,6 +125,26 @@ cd source/client/Chat
 > Đưa ảnh chụp kết quả hoặc mô tả log chạy thử.
 
 ![Demo Result](./statics/result.png)
+*Màn hình chính và giao diện login*
+
+  
+![main](source/giao%20diện.jpg)
+
+![Login](source/login.jpg)
+![Signin](source/signin.png)
+
+  
+
+*Chatspace*
+
+  
+
+![Chatspace](source/chat.jpg)
+
+*Gửi file bất đồng bộ*
+
+![sendfile](source/gửi%20file.jpg)
+
 
 ---
 
