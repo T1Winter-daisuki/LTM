@@ -9,9 +9,9 @@
 
 | STT | Họ và Tên | MSSV | Email | Đóng góp |
 |-----|-----------|------|-------|----------|
-| 1 | Nguyễn Hữu Hưng | B22DCCN412 | hungnguyencva2004@gmail.com | ... |
-| 2 | Lê Hải Đăng | B22DCCN207 | ledang18102004@gmail.com | ... |
-| 3 | Bùi Hoàng Sơn | B22DCCN687 | hoangsonbui.hp@gmail.com | ... |
+| 1 | Nguyễn Hữu Hưng | B22DCCN412 | hungnguyencva2004@gmail.com | Dev Back-end: Xác thực, Bảo mật & Quản lý Hồ sơ, Cơ sở dữ liệu |
+| 2 | Lê Hải Đăng | B22DCCN207 | ledang18102004@gmail.com | Dev Back-end: Logic Chat & WebSocket |
+| 3 | Bùi Hoàng Sơn | B22DCCN687 | hoangsonbui.hp@gmail.com | Dev Front-end |
 
 **Tên nhóm:** Nhóm 01 – Lập trình mạng  
 **Chủ đề đã đăng ký:** (ChatApp)
@@ -41,16 +41,6 @@
 
   
 
-**Cấu trúc logic tổng quát:**
-```
-client  <-->  server  <-->  (database / service nếu có)
-```
-
-**Sơ đồ hệ thống:**
-
-![System Diagram](./statics/diagram.png)
-
----
 
 ## ⚙️ CÔNG NGHỆ SỬ DỤNG
 
@@ -99,9 +89,6 @@ cd source/client/Chat
 	```
 ```
 
-### 4. Kiểm thử nhanh
-```bash
-# Các lệnh test
 ```
 
 ---
@@ -122,9 +109,6 @@ cd source/client/Chat
 
 ## 📊 KẾT QUẢ THỰC NGHIỆM
 
-> Đưa ảnh chụp kết quả hoặc mô tả log chạy thử.
-
-![Demo Result](./statics/result.png)
 *Màn hình chính và giao diện login*
 
   
@@ -224,22 +208,7 @@ Triển khai Redis Pub/Sub để quản lý các kết nối WebSocket, cho phé
 
 Chuyển đổi chuỗi kết nối MongoDB sang MongoDB Atlas hoặc dịch vụ DB cloud khác, và triển khai ứng dụng FastAPI trên các nền tảng đám mây (ví dụ: AWS ECS/EC2, Google Cloud Run) để đảm bảo khả năng mở rộng và tính sẵn sàng cao.
 
-[ ] Phát triển Chat 1-1 và Nhóm
-
-Lập trình lại logic gửi tin nhắn để sử dụng các collections Dialogs và Call đã định nghĩa, thay vì chỉ broadcast. Điều chỉnh WebSocket để gửi tin nhắn chính xác tới người nhận hoặc các thành viên trong nhóm.
-
 [ ] Hỗ trợ Tải File Lớn
 
 Thay vì truyền toàn bộ file qua WebSocket, tích hợp với dịch vụ lưu trữ đối tượng (Amazon S3 hoặc Google Cloud Storage) và sử dụng URL tải lên đã ký (signed URL) để client tải file trực tiếp lên cloud, giải phóng tài nguyên server.
 ---
-
-## 📝 GHI CHÚ
-
-- Repo tuân thủ đúng cấu trúc đã hướng dẫn trong `INSTRUCTION.md`.
-- Đảm bảo test kỹ trước khi submit.
-
----
-
-## 📚 TÀI LIỆU THAM KHẢO
-
-> (Nếu có) Liệt kê các tài liệu, API docs, hoặc nguồn tham khảo đã sử dụng.
