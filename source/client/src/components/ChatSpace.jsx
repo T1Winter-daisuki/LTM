@@ -74,9 +74,6 @@ const ChatSpace = ({ user }) => {
       socketRef.current?.close();
       fileSocketRef.current?.close();
     };
-    // // === Dùng fake data ===
-    // setListUsers(fakeUsers);
-    // setMessages(fakeMessages);
   }, [user?.username]);
 
   const sendMessage = () => {
@@ -91,12 +88,6 @@ const ChatSpace = ({ user }) => {
     }
 
     socketRef.current?.send(JSON.stringify(messageData));
-    // if (!currentMessage.trim()) return;
-    // setMessages((prev) => [
-    //   ...prev,
-    //   { username: user.username, type: "text", content: currentMessage }
-    // ]);
-    // setCurrentMessage("");
   };
 
   const syncMessages = () => {
@@ -173,7 +164,7 @@ const ChatSpace = ({ user }) => {
     messagesEndRef.current?.scrollIntoView({ behavior: "smooth" });
   }, [messages, messagesOffline]);
 
-  const [activeChatUser, setActiveChatUser] = useState(null);
+  // const [activeChatUser, setActiveChatUser] = useState(null);
 
   const handleFileChange = (e) => setFileInput(e.target.files[0]);
 
@@ -181,10 +172,8 @@ const ChatSpace = ({ user }) => {
     <div className={styles.superContainer}>
       {/* User Status */}
       <div className={styles.userStatusBar}>
-        {listUsers
-          .filter(u => u.username !== user.username)
-          .map(u => (
-          <div key={u.username} className={styles.userList} onClick={() => setActiveChatUser(u)}>
+        {listUsers.map(u => (
+          <div key={u.username} className={styles.userList}>
             <div className={styles.user}>
               <div className={styles.infor}>
                 <span className={styles.usernameStatus}>{u?.username}</span>
@@ -197,36 +186,31 @@ const ChatSpace = ({ user }) => {
 
       {/* Chat Space */}
       <div className={styles.chatSpaceContainer}>
-      {activeChatUser ? (
         <div style={{ paddingBottom: 100, overflowY: "auto", flex: 1 }}>
-          {messages
-            .filter(msg =>
-              msg.username === activeChatUser.username || msg.username === user.username
-            )
-            .map((msg, idx) => (
-              <div
-                key={idx}
-                className={`${styles.messageContainer} ${msg.username === user.username ? styles.myMessage : styles.yourMessage}`}
-              >
-                {msg.username !== user.username && (
-                  <div className={styles.usernameContainer}>
-                    <p className={styles.username}>{msg.username}:</p>
-                  </div>
-                )}
-                {msg.type === "text" ? (
-                  <p className={styles.message}>{msg.message || msg.content}</p>
-                ) : (
-                  <p className={styles.message}>
-                    <a
-                      href={`http://127.0.0.1:8000/message/file/${msg.message}`}
-                      className={`${styles.yourFile} ${msg.username === user.username ? styles.myFile : ""}`}
-                    >
-                      <FileOutlined /> {msg.message}
-                    </a>
-                  </p>
-                )}
-              </div>
-            ))}
+          {messages.map((msg, idx) => (
+            <div
+              key={idx}
+              className={`${styles.messageContainer} ${msg.username === user.username ? styles.myMessage : styles.yourMessage}`}
+            >
+              {msg.username !== user.username && (
+                <div className={styles.usernameContainer}>
+                  <p className={styles.username}>{msg.username}:</p>
+                </div>
+              )}
+              {msg.type === "text" ? (
+                <p className={styles.message}>{msg.message || msg.content}</p>
+              ) : (
+                <p className={styles.message}>
+                  <a
+                    href={`http://127.0.0.1:8000/message/file/${msg.message}`}
+                    className={`${styles.yourFile} ${msg.username === user.username ? styles.myFile : ""}`}
+                  >
+                    <FileOutlined /> {msg.message}
+                  </a>
+                </p>
+              )}
+            </div>
+          ))}
           {messagesOffline.filter(item => item.type !== "file").map((msg, idx) => (
             <div key={idx} className={`${styles.messageContainer} ${styles.myMessage}`}>
               <p className={styles.message}>{msg.content}</p>
@@ -235,11 +219,6 @@ const ChatSpace = ({ user }) => {
           ))}
           <div ref={messagesEndRef} />
         </div>
-        ) : (
-          <div style={{ flex: 1, display: "flex", justifyContent: "center", alignItems: "center", color: "#888" }}>
-            Trò chuyện với người ở danh sách bên.
-          </div>
-        )}
 
         <Card className={styles.chatCard}>
           <div style={{ display: "flex", alignItems: "center", gap: "10px" }}>
