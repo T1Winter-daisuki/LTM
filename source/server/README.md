@@ -47,8 +47,9 @@ server/
 │ └── user_model.py     
 ├── schemas/     
 │ └── token_data_schema.py     
-└── serializers/         ├── message_serializer.py         
-                         └── user_serializer.py
+└── serializers/    
+    ├── message_serializer.py         
+    └── user_serializer.py
 
 ---
 
