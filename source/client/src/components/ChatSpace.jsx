@@ -18,17 +18,6 @@ const ChatSpace = ({ user }) => {
   const socketRef = useRef(null);
   const fileSocketRef = useRef(null);
 
-  // const fakeUsers = [
-  //   { username: "Bob", status: "offline" },
-  //   { username: "Charlie", status: "online" },
-  // ];
-
-  // const fakeMessages = [
-  //   { username: "Bob", type: "text", content: "Hello Alice!" },
-  //   { username: "Charlie", type: "text", content: "Chào cả nhà" },
-  //   { username: "Alice", type: "file", message: "document.pdf" },
-  // ];
-
   useEffect(() => {
     if (!user) return <p>Loading...</p>;
 
@@ -111,6 +100,7 @@ const ChatSpace = ({ user }) => {
 
     // Hiển thị file đang gửi
     setMessages(prev => [...prev, { username: user.username, message: file.name, type: "file_progress" }]);
+
     const hide = antMessage.loading({ content: `Đang gửi ${file.name}`, duration: 0 });
 
     const sendChunk = () => {
