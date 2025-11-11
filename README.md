@@ -49,17 +49,18 @@ cd assignment-network-project
 
 ### 2. Chạy server
 
-````bash
+```bash
 cd source/server
 ```
+
 - Cài đặt thư viện
-	```
-	pip install -r requirements.txt
-	```
+  ```
+  pip install -r requirements.txt
+  ```
 - Chạy chương trình
-	 ```
-	 uvicorn main:app --reload
-	```
+  ```
+  uvicorn main:app --reload
+  ```
 
 ### 3. Chạy client
 
@@ -76,7 +77,6 @@ cd source/client/Chat
   npm run dev
   ```
 
-```
 ## 🔗 GIAO TIẾP (GIAO THỨC SỬ DỤNG)
 
 | Endpoint                    | Protocol      | Method      | Input (Request Body/Params)                                                             | Output (Response Body)                                                                | Mô tả                                                                                    |
@@ -185,4 +185,7 @@ Chuyển đổi chuỗi kết nối MongoDB sang MongoDB Atlas hoặc dịch v�
 - Hỗ trợ Tải File Lớn
 
 Thay vì truyền toàn bộ file qua WebSocket, tích hợp với dịch vụ lưu trữ đối tượng (Amazon S3 hoặc Google Cloud Storage) và sử dụng URL tải lên đã ký (signed URL) để client tải file trực tiếp lên cloud, giải phóng tài nguyên server.
-````
+
+```
+
+```
