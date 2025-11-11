@@ -8,9 +8,9 @@
 
 | STT | Họ và Tên | MSSV | Email | Đóng góp |
 |-----|-----------|------|-------|----------|
-| 1 | Nguyễn Hữu Hưng | B22DCCN412 | hungnguyencva2004@gmail.com | Dev Back-end: Xác thực, Bảo mật & Quản lý Hồ sơ, Cơ sở dữ liệu |
+| 1 | Nguyễn Hữu Hưng | B22DCCN412 | hungnguyencva2004@gmail.com | Dev Back-end: Xác thực, Bảo mật & Quản lý Hồ sơ|
 | 2 | Lê Hải Đăng | B22DCCN207 | ledang18102004@gmail.com | Dev Back-end: Logic Chat & WebSocket |
-| 3 | Bùi Hoàng Sơn | B22DCCN687 | hoangsonbui.hp@gmail.com | Dev Front-end |
+| 3 | Bùi Hoàng Sơn | B22DCCN687 | hoangsonbui.hp@gmail.com | Dev Front-end, Cơ sở dữ liệu |
 
 **Tên nhóm:** Nhóm 01 – Lập trình mạng  
 **Chủ đề đã đăng ký:** (ChatApp)

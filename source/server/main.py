@@ -31,7 +31,7 @@ async def insert_into_database(username, message, type):
         "type": type
     })
 
-
+# Send text
 @app.websocket("/ws/{username}")
 async def websocket_endpoint(websocket: WebSocket, username: str):
     await manager.connect(websocket)
@@ -60,7 +60,7 @@ async def websocket_endpoint(websocket: WebSocket, username: str):
         manager.disconnect(websocket)
         user_collection.update_one({'username': username}, {'$set': {'status': 'offline'}})
 
-
+# Send files
 @app.websocket("/ws/file/{username}")
 async def websocket_endpoint(websocket: WebSocket, username: str):
     await file_manager.connect(websocket)
@@ -83,11 +83,14 @@ async def websocket_endpoint(websocket: WebSocket, username: str):
                 file.write(base64.b64decode(file_content.split(',')[1]))
             file_size = os.path.getsize(file_path)
             if file_size == parsed_data['totalSize']:
-                await file_manager.broadcast(json.dumps({
+                file_message = json.dumps({
                     "username": username,
                     "message": file_name,
                     "type": 'file'
-                }, ensure_ascii=False))
+                }, ensure_ascii=False)
+                # Broadcast to both file and regular message connections
+                await file_manager.broadcast(file_message)
+                await manager.broadcast(file_message)
                 asyncio.create_task(insert_into_database(username, file_name, 'file'))
                 user_collection.update_one({'username': username},
                                            {'$set': {'last_sent': datetime.now().timestamp() * 1000}})
@@ -105,8 +108,3 @@ app.add_middleware(
     allow_methods=["*"],
     allow_headers=["*"],
 )
-
-from fastapi.staticfiles import StaticFiles
-
-# Mount folder 'files' để có thể truy cập file qua URL
-app.mount("/message/file", StaticFiles(directory="files"), name="files")
