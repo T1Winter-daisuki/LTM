@@ -3,7 +3,6 @@
 ## ChatApp
 
 
----
 
 ## 🧑‍💻 THÔNG TIN NHÓM
 
@@ -16,7 +15,6 @@
 **Tên nhóm:** Nhóm 01 – Lập trình mạng  
 **Chủ đề đã đăng ký:** (ChatApp)
 
----
 
 ## 🧠 MÔ TẢ HỆ THỐNG
 
@@ -53,7 +51,6 @@ Bảng này liệt kê các công nghệ và thư viện chính được sử d�
 | **Front-end Framework** | **ReactJS** | Thư viện JavaScript hàng đầu để xây dựng giao diện người dùng động. |
 | **UI Components** | **Ant Design** | Thư viện cung cấp các thành phần UI phong phú (Cần điều chỉnh nếu sử dụng React thay vì Vue). |
 
----
 
 ## 🚀 HƯỚNG DẪN CHẠY DỰ ÁN
 
@@ -89,9 +86,6 @@ cd source/client/Chat
 	```
 ```
 
-```
-
----
 
 ## 🔗 GIAO TIẾP (GIAO THỨC SỬ DỤNG)
 
@@ -105,7 +99,6 @@ cd source/client/Chat
 | `/message/file/{file_name}` | **HTTP/1.1** | **GET** | **Path Param**: `file_name` | **File** (Binary data) | Tải xuống file theo tên từ thư mục `files/`. |
 | `/ws/{username}` | **WebSocket** | **Connect** | **JSON** (Text Message): `{"content": "...", "type": "text"}` | **JSON** (Broadcast): `{"username": "...", "message": "...", "type": "text"}` | Kết nối/Ngắt kết nối, gửi/nhận **tin nhắn văn bản** thời gian thực, cập nhật trạng thái. |
 | `/ws/file/{username}` | **WebSocket** | **Connect** | **JSON** (File Chunk): `{"name": "...", "content": "...", "offset": 0, "totalSize": 0}` | **JSON** (Broadcast): `{"username": "...", "message": "<file_name>", "type": "file"}` | Kết nối và xử lý **tải lên file** theo từng đoạn. Broadcast khi hoàn tất. |
----
 
 ## 📊 KẾT QUẢ THỰC NGHIỆM
 
@@ -130,7 +123,6 @@ cd source/client/Chat
 ![sendfile](source/gửi%20file.jpg)
 
 
----
 
 ## 🧩 CẤU TRÚC DỰ ÁN
 ```
@@ -186,7 +178,6 @@ assignment-network-project/
         └── main.py                 # Hàm main và các điểm cuối WebSocket chính
 ```
 
----
 
 ## 🧩 HƯỚNG PHÁT TRIỂN THÊM
 
@@ -211,4 +202,4 @@ Chuyển đổi chuỗi kết nối MongoDB sang MongoDB Atlas hoặc dịch v�
 [ ] Hỗ trợ Tải File Lớn
 
 Thay vì truyền toàn bộ file qua WebSocket, tích hợp với dịch vụ lưu trữ đối tượng (Amazon S3 hoặc Google Cloud Storage) và sử dụng URL tải lên đã ký (signed URL) để client tải file trực tiếp lên cloud, giải phóng tài nguyên server.
----
+
