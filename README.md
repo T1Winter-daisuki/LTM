@@ -23,7 +23,7 @@
 
 **Đăng nhập và đăng ký:** Ứng dụng cho phép người dùng đăng nhập bằng tên đăng nhập và mật khẩu hoặc đăng ký tài khoản mới.
 
-**Trò chuyện Real-time:** Người dùng có thể trò chuyện với nhau một cách trong thời gian thực, không cần phải làm mới trang hoặc tải lại. Khi không có kết nối internet, vẫn có thể gửi được tin nhắn, tin nhắn sẽ được đồng bộ khi online.
+**Trò chuyện Real-time:** Người dùng có thể trò chuyện với nhau một cách trong thời gian thực, không cần phải làm mới trang hoặc tải lại.
 
 **Gửi Tệp Đính Kèm** **:** Người dùng có thể gửi tệp đính kèm như tài liệu, hồ sơ và tệp âm thanh bất đồng bộ.
 
@@ -31,12 +31,12 @@
 
 Bảng này liệt kê các công nghệ và thư viện chính được sử dụng trong dự án.
 
-|       Thành phần        |   Công nghệ    | Ghi chú                                                                                       |
-| :---------------------: | :------------: | :-------------------------------------------------------------------------------------------- |
-| **Back-end Framework**  |  **FastAPI**   | REST API, hiệu năng cao, dễ học, sẵn sàng cho production.                                     |
-|      **Database**       |  **MongoDB**   | NoSQL Database để lưu trữ dữ liệu.                                                            |
-| **Front-end Framework** |  **ReactJS**   | Thư viện JavaScript hàng đầu để xây dựng giao diện người dùng động.                           |
-|    **UI Components**    | **Ant Design** | Thư viện cung cấp các thành phần UI phong phú (Cần điều chỉnh nếu sử dụng React thay vì Vue). |
+|       Thành phần        |   Công nghệ    | Ghi chú                                                             |
+| :---------------------: | :------------: | :------------------------------------------------------------------ |
+| **Back-end Framework**  |  **FastAPI**   | REST API, hiệu năng cao, dễ học, sẵn sàng cho production.           |
+|      **Database**       |  **MongoDB**   | NoSQL Database để lưu trữ dữ liệu.                                  |
+| **Front-end Framework** |  **ReactJS**   | Thư viện JavaScript hàng đầu để xây dựng giao diện người dùng động. |
+|    **UI Components**    | **Ant Design** | Thư viện cung cấp các thành phần UI phong phú                       |
 
 ## 🚀 HƯỚNG DẪN CHẠY DỰ ÁN
 
@@ -185,7 +185,3 @@ Chuyển đổi chuỗi kết nối MongoDB sang MongoDB Atlas hoặc dịch v�
 - Hỗ trợ Tải File Lớn
 
 Thay vì truyền toàn bộ file qua WebSocket, tích hợp với dịch vụ lưu trữ đối tượng (Amazon S3 hoặc Google Cloud Storage) và sử dụng URL tải lên đã ký (signed URL) để client tải file trực tiếp lên cloud, giải phóng tài nguyên server.
-
-```
-
-```
