@@ -185,12 +185,12 @@ header {
 .homeContainer {
   display: flex;
   flex-direction: column;
-  min-height: 100vh; /* chiếm toàn bộ chiều cao màn hình */
+  min-height: 100vh;
 }
 
 /* Nội dung chính chiếm khoảng trống giữa header và footer */
 .mainContent {
-  flex: 1; /* phần nội dung mở rộng */
+  flex: 1;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -202,7 +202,7 @@ header {
   justify-content: space-between;
   align-items: center;
   padding: 16px 60px;
-  background-color: rgba(0, 0, 0, 0.3); /* trong suốt nhẹ để thấy background sao */
+  background-color: rgba(0, 0, 0, 0.3);
   color: #fff;
   font-size: 15px;
   border-top: 1px solid rgba(255, 255, 255, 0.1);

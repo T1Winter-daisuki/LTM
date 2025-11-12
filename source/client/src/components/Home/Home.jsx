@@ -2,9 +2,9 @@ import React, { useState, useEffect } from 'react';
 import { Spin } from 'antd';
 import { LoadingOutlined } from '@ant-design/icons';
 import styles from './Home.module.css';
-import user1 from '../assets/user1.jpg';
-import user2 from '../assets/user2.jpg';
-import user3 from '../assets/user3.jpg';
+import user1 from '../../assets/user1.jpg';
+import user2 from '../../assets/user2.jpg';
+import user3 from '../../assets/user3.jpg';
 
 export default function Home() {
   const [isLoading, setIsLoading] = useState(true);

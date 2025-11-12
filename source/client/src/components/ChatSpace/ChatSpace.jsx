@@ -5,8 +5,6 @@ import axios from "axios";
 import styles from "./ChatSpace.module.css";
 
 const ChatSpace = ({ user }) => {
-  if (!user) return <p>Loading...</p>;
-
   const [messages, setMessages] = useState([]);
   const [messagesOffline, setMessagesOffline] = useState([]);
   const [currentMessage, setCurrentMessage] = useState("");
@@ -19,7 +17,7 @@ const ChatSpace = ({ user }) => {
   const fileSocketRef = useRef(null);
 
   useEffect(() => {
-    if (!user) return <p>Loading...</p>;
+    if (!user?.username) return;
 
     socketRef.current = new WebSocket(`ws://localhost:8000/ws/${user?.username}`);
     fileSocketRef.current = new WebSocket(`ws://localhost:8000/ws/file/${user?.username}`);

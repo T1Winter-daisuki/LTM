@@ -2,8 +2,8 @@ import React, { useState, useEffect } from 'react';
 import { useNavigate, Link } from 'react-router-dom';
 import { Button, Dropdown, Menu, message, Layout } from 'antd';
 import { LogoutOutlined, UnorderedListOutlined } from '@ant-design/icons';
-import { useUserStore } from "../components/stores/users";
-import AuthModal from './AuthModal';
+import { useUserStore } from "../stores/users";
+import AuthModal from '../AuthModal/AuthModal';
 import styles from './Nav.module.css';
 
 export default function Nav() {

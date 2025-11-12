@@ -1,6 +1,6 @@
 import { Routes, Route, Navigate } from "react-router-dom";
 import HomeView from "./views/HomeView";
-import ChatSpace from "./components/ChatSpace";
+import ChatSpace from "./components/ChatSpace/ChatSpace";
 import { useUserStore } from "./components/stores/users";
 
 export default function AppRouter() {
@@ -14,7 +14,6 @@ export default function AppRouter() {
   return (
     <Routes>
       <Route path="/" element={<HomeView />} />
-      <Route path="/home" element={<HomeView />} />
       <Route
         path="/chat"
         element={

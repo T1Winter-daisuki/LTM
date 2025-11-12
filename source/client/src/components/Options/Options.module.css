@@ -1,0 +1,67 @@
+.optionsContainer {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-top: 50px;
+  font-family: Arial, sans-serif;
+  color: #fff;
+}
+
+.title {
+  font-size: 28px;
+  font-weight: bold;
+}
+
+.optionsGrid {
+  display: flex;
+  gap: 40px;
+  margin-top: 30px;
+}
+
+.optionCard {
+  position: relative;
+  width: 200px;
+  height: 150px;
+  border-radius: 15px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  color: #fff;
+  font-size: 20px;
+  font-weight: bold;
+  text-align: center;
+}
+
+/* Màu riêng từng thẻ */
+.chat1to1 {
+  background: #261B37;
+}
+
+.chatGroup {
+  background: #2F1C36;
+}
+
+/* Hover effect */
+.optionCard:hover {
+  transform: translateY(-10px);
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.4);
+}
+
+/* Tooltip fade lên */
+.optionTooltip {
+  position: absolute;
+  bottom: 10px;
+  opacity: 0;
+  background: #5E2A4B;
+  padding: 5px 10px;
+  border-radius: 8px;
+  font-size: 14px;
+  transition: opacity 0.3s ease, bottom 0.3s ease;
+}
+
+.optionCard:hover .optionTooltip {
+  opacity: 1;
+  bottom: 120%;
+}

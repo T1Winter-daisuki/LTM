@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import { Button, Modal, Form, Input, Spin, Row, Col, Typography, message } from 'antd';
 import { UserOutlined, LockOutlined, IdcardOutlined, UserAddOutlined, LoginOutlined } from '@ant-design/icons';
-import { useUserStore } from '../components/stores/users';
+import { useUserStore } from '../stores/users';
 import styles from './AuthModal.module.css';
 
 export default function AuthModal({ isLogin }) {
