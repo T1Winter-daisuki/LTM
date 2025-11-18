@@ -8,7 +8,7 @@
 | --- | --------------- | ---------- | --------------------------- | ------------------------------------------------------ |
 | 1   | Nguyễn Hữu Hưng | B22DCCN412 | hungnguyencva2004@gmail.com | Dev Back-end: Xác thực, Bảo mật & Quản lý Hồ sơ & APIs |
 | 2   | Lê Hải Đăng     | B22DCCN207 | ledang18102004@gmail.com    | Dev Back-end: Logic Chat & WebSocket & APIs            |
-| 3   | Bùi Hoàng Sơn   | B22DCCN687 | hoangsonbui.hp@gmail.com    | Dev Front-end, Cơ sở dữ liệu                           |
+| 3   | Bùi Hoàng Sơn   | B22DCCN687 | hoangsonbui.hp@gmail.com    | Dev Front-end, Cơ sở dữ liệu, Logic Chat & WebSocket   |
 
 **Tên nhóm:** Nhóm 01 – Lập trình mạng  
 **Chủ đề đã đăng ký:** CHAT APP
