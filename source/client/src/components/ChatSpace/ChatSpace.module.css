@@ -1,3 +1,7 @@
+/* ===========================
+   LAYOUT
+=========================== */
+
 .superContainer {
   display: flex;
   height: 100vh;
@@ -8,167 +12,178 @@
   padding-top: 102px;
 }
 
-.userStatusBar {
+/* ===========================
+   SIDEBAR BÊN TRÁI
+=========================== */
+
+.sidebar {
   width: 240px;
   background-color: #2F1C36;
   border-right: 2px solid rgba(255, 255, 255, 0.05);
   padding: 20px 10px;
   display: flex;
   flex-direction: column;
-  gap: 15px;
   overflow-y: auto;
 }
 
-.userList {
+.sidebarHeader {
+  font-size: 16px;
+  font-weight: 600;
+  margin-bottom: 12px;
+  color: #f8b3d1;
+}
+
+/* Item user */
+.userItem {
   display: flex;
+  justify-content: space-between;
   align-items: center;
-  padding: 8px 12px;
-  border-radius: 12px;
+
+  padding: 10px 14px;
+  margin-bottom: 8px;
+
+  border-radius: 10px;
+  cursor: pointer;
+
   background-color: rgba(255, 255, 255, 0.05);
   transition: 0.2s;
 }
 
-.userList:hover {
+.userItem:hover {
   background-color: rgba(255, 255, 255, 0.1);
 }
 
-.usernameStatus {
-  font-weight: 600;
-  color: #fff;
-  margin-right: 8px;
+/* User đang chọn */
+.userActive {
+  background-color: rgba(255, 255, 255, 0.15) !important;
+  border-left: 4px solid #f8b3d1;
 }
 
+/* Status icon */
 .status {
-  display: inline-block;
   width: 10px;
   height: 10px;
   border-radius: 50%;
 }
 
-.status.online {
+.online {
   background-color: #4caf50;
 }
 
-.status.offline {
+.offline {
   background-color: #999;
 }
 
-.chatSpaceContainer {
+/* ===========================
+   KHUNG CHAT BÊN PHẢI
+=========================== */
+
+.chatArea {
   flex: 1;
   display: flex;
   flex-direction: column;
-  background-color: #261B37;
+  padding: 15px;
   position: relative;
   overflow: hidden;
-  padding: 15px;
 }
 
+/* Hiện khi chưa chọn user */
+.emptyArea {
+  flex: 1;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  opacity: 0.6;
+  font-size: 18px;
+}
+
+/* Khung tin nhắn */
+.messagesBox {
+  flex: 1;
+  overflow-y: auto;
+  padding-bottom: 80px;
+}
+
+/* Container tin nhắn */
 .messageContainer {
   display: flex;
   flex-direction: column;
-  max-width: 60%;
-  position: relative;
+  margin-bottom: 10px;
+  max-width: 70%;
 }
 
 .myMessage {
-  align-self: flex-end;
   margin-left: auto;
+  text-align: right;
 }
 
 .yourMessage {
-  align-self: flex-start;
   margin-right: auto;
 }
 
-.message {
-  padding: 10px 14px;
-  border-radius: 18px;
-  line-height: 1.4;
-  font-size: 15px;
-  word-wrap: break-word;
-  box-shadow: 0 2px 6px rgba(0,0,0,0.2);
-  position: relative;
-  background-color: #5E2A4B;
-  white-space: pre-wrap;
-}
-
-.myMessage .message {
-  background-color: #8a3d6b;
-  border-top-right-radius: 4px;
-  border-top-left-radius: 18px;
-  border-bottom-left-radius: 18px;
-  border-bottom-right-radius: 18px;
-  text-align: right;
-  word-wrap: break-word;
-}
-
-.yourMessage .message {
-  background-color: #5E2A4B;
-  border-top-left-radius: 4px;
-  border-top-right-radius: 18px;
-  border-bottom-left-radius: 18px;
-  border-bottom-right-radius: 18px;
-  text-align: left;
-  word-wrap: break-word;
-}
-
-.usernameContainer {
+/* Username label */
+.username {
+  color: #f8b3d1;
+  font-weight: bold;
   margin-bottom: 2px;
 }
 
-.username {
-  font-weight: bold;
-  margin-right: 5px;
-  color: #f8b3d1;
-  margin-bottom: 0;
+/* Bubble message */
+.message {
+  padding: 10px 14px;
+  border-radius: 16px;
+  background-color: #5E2A4B;
+  line-height: 1.4;
+  font-size: 15px;
+  white-space: pre-wrap;
 }
 
-.yourFile {
-  color: #f8b3d1;
-  text-decoration:underline;
+/* Tin của mình */
+.myMessage .message {
+  background-color: #8a3d6b;
+  border-top-right-radius: 4px;
 }
 
-.yourFile:hover {
-  text-decoration: underline;
+/* Tin của người khác */
+.yourMessage .message {
+  background-color: #5E2A4B;
+  border-top-left-radius: 4px;
 }
 
-.sendingLabel {
-  font-size: 12px;
-  color: #ccc;
-  margin-top: 3px;
-  text-align: right;
-  opacity: 0.8;
-}
+/* ===========================
+   INPUT CHAT
+=========================== */
 
 .chatCard {
-  position: fixed;
+  position: absolute;
   bottom: 0;
-  left: 240px;
+  left: 0;
   right: 0;
+
   background-color: #2F1C36 !important;
   border-top: 1px solid rgba(255, 255, 255, 0.1);
+
   padding: 10px 20px !important;
-  box-shadow: 0 -2px 10px rgba(0,0,0,0.3);
 }
 
-.chatInput {
+.chatCard textarea {
   background-color: #3a2442 !important;
   border: none !important;
   color: #fff !important;
-  border-radius: 30px !important;
-  padding: 10px 15px !important;
+  border-radius: 20px !important;
+  padding: 10px !important;
 }
 
-.chatInput::placeholder {
-  color: #bbb !important;
+.chatCard textarea::placeholder {
+  color: #bbb;
 }
 
-.chatInput:focus {
+.chatCard textarea:focus {
   outline: none;
-  box-shadow: 0 0 5px #5E2A4B !important;
+  box-shadow: 0 0 5px #5E2A4B;
 }
 
-/* Scrollbar */
+/* Scrollbar đẹp */
 ::-webkit-scrollbar {
   width: 8px;
 }

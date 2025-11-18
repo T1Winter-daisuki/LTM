@@ -1,67 +1,177 @@
+.starSky {
+  position: fixed;
+  width: 100%;
+  height: 100vh;
+  background: radial-gradient(ellipse at bottom, #261B37 0%, #2F1C36 50%, #5E2A4B 100%);
+  overflow: hidden;
+  z-index: -1;
+}
+
+.stars,
+.stars2,
+.stars3 {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  background: white;
+}
+
+.stars {
+  box-shadow: 10px 50px, 60px 120px, 120px 300px, 200px 150px, 250px 400px, 400px 100px, 500px 250px, 600px 350px, 700px 80px, 800px 200px;
+  animation: fallStars1 100s linear infinite;
+}
+.stars2 {
+  box-shadow: 30px 70px, 90px 200px, 150px 400px, 250px 180px, 300px 450px, 450px 120px, 550px 300px, 650px 400px, 750px 150px;
+  animation: fallStars2 150s linear infinite;
+}
+.stars3 {
+  box-shadow: 50px 100px, 120px 250px, 200px 500px, 300px 350px, 400px 450px, 500px 200px, 600px 400px, 700px 300px, 800px 500px;
+  animation: fallStars3 200s linear infinite;
+}
+
+@keyframes fallStars1 {
+  0% { transform: translateY(0); }
+  100% { transform: translateY(-1200px); }
+}
+@keyframes fallStars2 {
+  0% { transform: translateY(0); }
+  100% { transform: translateY(-1500px); }
+}
+@keyframes fallStars3 {
+  0% { transform: translateY(0); }
+  100% { transform: translateY(-1800px); }
+}
+
+.spinner {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  z-index: 50;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
 .optionsContainer {
   display: flex;
   flex-direction: column;
-  align-items: center;
-  margin-top: 50px;
-  font-family: Arial, sans-serif;
+  min-height: 100vh;
   color: #fff;
 }
 
+.mainContent {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  padding-top: 200px;
+}
+
 .title {
-  font-size: 28px;
-  font-weight: bold;
+  font-size: 2.5rem;
+  color: #FDF996;
+  margin-bottom: 10px;
+}
+
+.subtitle {
+  color: #ffdbb8;
+  font-size: 1.1rem;
+  margin-bottom: 40px;
 }
 
 .optionsGrid {
   display: flex;
-  gap: 40px;
-  margin-top: 30px;
+  gap: 60px;
+  flex-wrap: wrap;
+  justify-content: center;
+  margin-bottom: 80px;
 }
 
 .optionCard {
   position: relative;
-  width: 200px;
-  height: 150px;
-  border-radius: 15px;
+  width: 220px;
+  height: 180px;
+  border-radius: 16px;
+  background: rgba(255, 255, 255, 0.08);
+  box-shadow: 0 0 20px rgba(255, 255, 255, 0.1);
   display: flex;
   justify-content: center;
   align-items: center;
+  font-size: 1.5rem;
   cursor: pointer;
-  transition: transform 0.3s ease, box-shadow 0.3s ease;
-  color: #fff;
-  font-size: 20px;
-  font-weight: bold;
-  text-align: center;
+  transition: all 0.3s ease;
+  overflow: hidden;
 }
 
-/* Màu riêng từng thẻ */
-.chat1to1 {
-  background: #261B37;
-}
-
-.chatGroup {
-  background: #2F1C36;
-}
-
-/* Hover effect */
 .optionCard:hover {
-  transform: translateY(-10px);
-  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.4);
+  transform: translateY(-8px);
+  background: rgba(255, 255, 255, 0.15);
+  box-shadow: 0 0 30px rgba(255, 255, 255, 0.3);
 }
 
-/* Tooltip fade lên */
+.optionTitle {
+  color: #FDF996;
+  font-weight: 600;
+  letter-spacing: 1px;
+}
+
 .optionTooltip {
   position: absolute;
-  bottom: 10px;
+  bottom: 16px;
   opacity: 0;
-  background: #5E2A4B;
-  padding: 5px 10px;
-  border-radius: 8px;
-  font-size: 14px;
-  transition: opacity 0.3s ease, bottom 0.3s ease;
+  color: #fff;
+  font-size: 0.95rem;
+  transition: opacity 0.3s ease;
 }
 
 .optionCard:hover .optionTooltip {
   opacity: 1;
-  bottom: 120%;
+}
+
+.chat1to1 {
+  border: 2px solid #C64234;
+}
+.chatGroup {
+  border: 2px solid #C64234;
+}
+
+.footer {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 16px 60px;
+  background-color: rgba(0, 0, 0, 0.3);
+  color: #fff;
+  font-size: 15px;
+  border-top: 1px solid rgba(255, 255, 255, 0.1);
+  backdrop-filter: blur(6px);
+  width: 100%;
+  box-sizing: border-box;
+}
+
+.footer a {
+  color: #a3d9ff;
+  text-decoration: none;
+  transition: color 0.2s ease;
+}
+
+.footer a:hover {
+  color: #ffffff;
+}
+
+@media (max-width: 768px) {
+  .optionsGrid {
+    gap: 30px;
+  }
+
+  .optionCard {
+    width: 180px;
+    height: 140px;
+  }
+
+  .title {
+    font-size: 2rem;
+  }
 }
